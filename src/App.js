@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes, Link } from "react-router-dom";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Articles from "./pages/Articles";
+import Article from "./pages/Article";
+import Layout from "./Layout";
+import Login from "./pages/Login";
+import MyPage from "./pages/MyPage";
+import NotFound from "./pages/NotFound";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile/:username" element={<Profile />} />
+      </Route>
+      <Route path="/Articles" element={<Articles />} >
+        <Route path=":id" element={<Article />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/mypage" element={<MyPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
-}
+  // return (
+  //   <Routes>
+  //     <Route path="/" element={<Home />} />
+  //     <Route path="/about" element={<About />} />
+  //     <Route path="/profile/:username" element={<Profile />} />
+  //     <Route path="/Articles" element={<Articles />} />
+  //     <Route path="/Articles/:id" element={<Article />} />
+  //   </Routes>
+  // );
+
+  // return (
+  //   <div>
+  //     <ul>
+  //       <li>
+  //         <Link to="/">홈</Link>
+  //       </li>
+  //       <li>
+  //         <Link to="/about">소개</Link>
+  //       </li>
+  //       <li>
+  //         <Link to="/profile/velopert">velopert 프로필</Link>
+  //       </li>
+  //       <li>
+  //         <Link to="/profile/gildong">gildong 프로필</Link>
+  //       </li>
+  //     </ul>
+  //     <hr />
+  //     <Routes> {/* 라우트를 관리하는 엘리먼트 */}
+  //       <Route path="/" element={<Home />} />
+  //       <Route path="/about" element={<About />} />
+  //       <Route path="/profile/:username" element={<Profile />} />
+  //     </Routes>
+  //   </div>
+  // );
+};
 
 export default App;
